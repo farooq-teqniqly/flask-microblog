@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if not title %}
+        <title>Welcome to Microblog!</title>
+    {% else %}
+        <title>{{ title }} - Microblog!</title>
+    {%  endif %}
+</head>
+<body>
+    <div><a href="/index">Microblog Home</a></div>
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
