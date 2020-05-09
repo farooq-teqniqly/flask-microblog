@@ -1,9 +1,12 @@
+import uuid
+
 from werkzeug.urls import url_parse
 
-from app import app
+from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms.loginform import LoginForm
+from app.forms.userregform import UserRegistrationForm
 from app.models import User
 
 
@@ -52,3 +55,32 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for("index"))
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for("/index"))
+
+    form = UserRegistrationForm()
+
+    if form.validate_on_submit():
+        user = User(
+            id=str(uuid.uuid4()), username=form.username.data, email=form.email.data
+        )
+        user.set_password(form.password.data)
+
+        db.session.add(user)
+
+        try:
+            db.session.commit()
+            flash("Registration successful!")
+            return redirect(url_for("login"))
+        except Exception as e:
+            db.session.rollback()
+            flash(e)
+        finally:
+            db.session.close()
+
+    params = dict(title="Register", form=form)
+    return render_template("userreg.jinja2", **params)
