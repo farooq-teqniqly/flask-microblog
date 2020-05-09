@@ -7,5 +7,11 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:D:\src\teqniqly\flask-microblog\db\app.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="app [2]" uuid="1a3aa2fc-20c4-4b0e-9206-bd65cfc3d8d5">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\src\teqniqly\flask-microblog\db\app.db</jdbc-url>
+    </data-source>
   </component>
 </project>
