@@ -32,8 +32,18 @@ def seed_db(db):
     db.session.commit()
 
     users = [
-        models.User(id=get_id(), username="farooqam", email="farooqam@foo.com"),
-        models.User(id=get_id(), username="engreen", email="engreen@foo.com"),
+        models.User(
+            id=get_id(),
+            username="farooqam",
+            email="farooqam@foo.com",
+            about_me="I am cool!",
+        ),
+        models.User(
+            id=get_id(),
+            username="engreen",
+            email="engreen@foo.com",
+            about_me="I am principle based!",
+        ),
     ]
 
     for user in users:
