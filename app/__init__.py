@@ -18,7 +18,7 @@ app.config.from_object(config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from app import routes, models
+from app import routes, models, errors
 
 
 def get_id() -> str:
