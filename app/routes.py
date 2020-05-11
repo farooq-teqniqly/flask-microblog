@@ -7,20 +7,15 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms.loginform import LoginForm
 from app.forms.userregform import UserRegistrationForm
-from app.models import User
+from app.models import User, Post
 
 
 @app.route("/")
 @app.route("/index")
 @login_required
 def index():
-    posts = [
-        {"author": {"username": "farooqam"}, "body": "Beautiful day in Seattle!"},
-        {"author": {"username": "engreen"}, "body": "Bombshell movie was so cool!"},
-    ]
-
+    posts = Post.query.all()
     params = dict(title="Welcome", posts=posts)
-
     return render_template("index.jinja2", **params)
 
 

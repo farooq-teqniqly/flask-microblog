@@ -6,9 +6,7 @@
         <p>There are no posts. Why don't you add one?</p>
     {%  else %}
         {%  for post in posts %}
-            <div>
-                <p>{{ post.author.username }} says <b>{{ post.body }}</b></p>
-            </div>
+            {% include "_post.jinja2" %}
         {%  endfor %}
     {%  endif %}
 {%  endblock %}
