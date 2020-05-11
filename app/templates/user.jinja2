@@ -1,0 +1,20 @@
+{%  extends "base.jinja2" %}
+
+{%  block content %}
+    <table>
+        <tr valign="top">
+            <td><img src="{{ user.get_gravatar() }}" alt=""></td>
+            <td><h1>User: {{ user.username }}</h1></td>
+        </tr>
+    </table>
+    <hr>
+    {%  for post in posts %}
+    <table>
+        <tr valign="top">
+            <td><img src="{{ post.author.get_gravatar(36) }}" alt=""></td>
+            <td>{{ post.author.username }} says: <br>{{ post.body }}</td>
+        </tr>
+    </table>
+    {%  endfor %}
+
+{%  endblock %}
